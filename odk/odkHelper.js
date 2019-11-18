@@ -3,6 +3,7 @@ const db = require("../data/dbConfig");
 module.exports = {
     addUser,
     getUser,
+    getMothers,
     addMother,
     addDriver,
     getVillages
@@ -21,6 +22,10 @@ function addUser(user) {
     return db('users')
         .insert(user)
         .returning(['id', 'username']);
+}
+
+function getMothers(){
+    return db("mothers").select("*")
 }
 
 function addMother(mother){
