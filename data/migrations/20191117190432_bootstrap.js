@@ -2,6 +2,14 @@
 exports.up = function (knex) {
     return (
         knex.schema
+            .createTable('users', (users) => {
+                users.increments();
+                users.string('username', 128)
+                    .notNullable()
+                    .unique();
+                users.string('password', 128)
+                    .notNullable()
+            })
             //villages
             .createTable("village", village => {
                 //pk
@@ -205,4 +213,5 @@ exports.down = function (knex) {
         .dropTableIfExists("mothers")
         .dropTableIfExists("drivers")
         .dropTableIfExists("village")
+        .dropTableIfExists("users")
 };
