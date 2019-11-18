@@ -1,7 +1,6 @@
 // Update with your config settings.
 
 module.exports = {
-
   development: {
     client: 'sqlite3',
     connection: {
@@ -18,8 +17,7 @@ module.exports = {
 
   production: {
     client: 'pg',
-    connection: process.env.DATABSE_URL,
-    useNullAsDefault: true,
+    connection: process.env.DATBASE_URL,
     migrations: {
       directory: './data/migrations'
     },
