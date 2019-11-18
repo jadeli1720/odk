@@ -2,7 +2,7 @@ const router = require("express").Router();
 const odk = require("./odkHelper");
 const fs = require('fs');
 const xml2js = require("xml2js");
-const parser = new xml2js.Parser();
+const parser = new xml2js.Parser({explicitArray : false});
 const multer = require("multer")
 
 const storage = {
@@ -24,6 +24,17 @@ router.get("/villages", (req,res) => {
         .then(villages => {
             console.log(villages)
             res.status(200).json(villages);
+        })
+        .catch(err => {
+            console.log("Getting Villages", err)
+            res.status(500).json(err)
+        })
+})
+router.get("/users", (req,res) => {
+    odk.getUsers()
+        .then(users => {
+            console.log(users)
+            res.status(200).json(users);
         })
         .catch(err => {
             console.log("Getting Villages", err)
@@ -53,6 +64,7 @@ router.post('/upload', upload.single('xml_submission_file'), (req, res) => {
         console.log(err)
         parser.parseString(data, function (err, result) {
             console.log('FROM XML TO JSON ', result);
+            //look for file name in data id.
             const {"data": data} = result;
             const {username, password} = data;
             const user = {
@@ -60,6 +72,7 @@ router.post('/upload', upload.single('xml_submission_file'), (req, res) => {
               password: password[0],
             };
             console.log("USER ", user);
+            //terenary statement and search for name using regex
             odk.addUser(user)
                 .then(([user]) => {
                     fs.unlinkSync(path);
@@ -67,14 +80,6 @@ router.post('/upload', upload.single('xml_submission_file'), (req, res) => {
                 })
                 .catch(err => console.log("Error posting", err))
 
-           /* if (username.length && password.length) {
-                db.add(user)
-                    .then(([user]) => {
-                        fs.unlinkSync(path);
-                        res.status(201).json(user);
-                    })
-                    .catch(err => res.status(500).json({error: "There was an error while saving the user to the database"}))
-            }*/
             fs.unlinkSync(path);
             res.status(201).json(user);
         });
