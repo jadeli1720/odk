@@ -17,12 +17,23 @@ const storage = {
 const upload = multer(storage);
 
 //Testing
+router.get("/villages", (req,res) => {
+    odk.getVillages()
+        .then(villages => {
+            res.status(200).json(villages);
+        })
+        .catch(err => {
+            console.log("Getting Villages", err)
+            res.status(500).json(err)
+        })
+})
+
 router.post('/', (req, res) => {
     const driver = req.body;
     console.log('body ', req.body);
     console.log('hello heroku ', req.body);
     if (driver) {
-        db.addDriver(driver)
+        odk.addDriver(driver)
             .then(([driver]) => res.status(201).json(driver))
             .catch(err => res.status(500).json({error: "There was an error while saving the driver to the database"}))
     }
