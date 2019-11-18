@@ -1,8 +1,8 @@
-require('dotenv').config();
+require('dotenv').config({path: "./.env"});
 
 const server = require('./api/server');
 const defaults = require('./config/default');
 
-const port = defaults.port;
+const PORT = defaults.port;
 
-server.listen(port, () => console.log(`\n** Server up on port ${port} **\n`));
+server.listen(PORT, () => console.log(`\n** Server up on port ${PORT} **\n`));
