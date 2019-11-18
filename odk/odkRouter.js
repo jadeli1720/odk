@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const odk = require("./odkHelper");
-const xml2hs = require("xml2js");
+const xml2js = require("xml2js");
+const parser = new xml2js.Parser();
 const multer = require("multer")
 
 const storage = {
@@ -40,10 +41,11 @@ router.post('/', (req, res) => {
     }
 });
 
-router.post('/uploads', upload.single('xml_submission_file'), (req, res) => {
+router.post('/odkUpload', upload.single('xml_submission_file'), (req, res) => {
     console.log('BODY ', req.body);
     console.log('FILE ', req.file);
     const path = req.file.path;
+    console.log("path",path)
     fs.readFile(path, {encoding: 'utf8'}, (err, data) => {
         if (err) throw err;
         console.log('Data XML ', data);
@@ -56,6 +58,13 @@ router.post('/uploads', upload.single('xml_submission_file'), (req, res) => {
               password: password[0],
             };
             console.log("USER ", user);
+            odk.addUser(user)
+                .then(([user]) => {
+                    fs.unlinkSync(path);
+                    res.status(201).json(user);
+                })
+                .catch(err => console.log("Error posting", err))
+
            /* if (username.length && password.length) {
                 db.add(user)
                     .then(([user]) => {
@@ -64,10 +73,10 @@ router.post('/uploads', upload.single('xml_submission_file'), (req, res) => {
                     })
                     .catch(err => res.status(500).json({error: "There was an error while saving the user to the database"}))
             }*/
-            fs.unlinkSync(path);
-            res.status(201).json(user);
+            // fs.unlinkSync(path);
+            // res.status(201).json(user);
         });
-    });
+    })
 });
 
 module.exports = router
