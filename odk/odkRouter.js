@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const odk = require("./odkHelper");
+const fs = require('fs');
 const xml2js = require("xml2js");
 const parser = new xml2js.Parser();
 const multer = require("multer")
@@ -49,6 +50,7 @@ router.post('/upload', upload.single('xml_submission_file'), (req, res) => {
     fs.readFile(path, {encoding: 'utf8'}, (err, data) => {
         if (err) throw err;
         console.log('Data XML ', data);
+        console.log(err)
         parser.parseString(data, function (err, result) {
             console.log('FROM XML TO JSON ', result);
             const {"data": data} = result;
