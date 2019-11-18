@@ -21,12 +21,11 @@ module.exports = {
     connection: process.env.DATABSE_URL,
     useNullAsDefault: true,
     migrations: {
-      directory: './data/migrations',
+      directory: './data/migrations'
     },
     seeds: {
       directory: './data/seeds'
     },
-    useNullAsDefault: true,
   }
 
 };
