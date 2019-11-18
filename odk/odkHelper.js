@@ -2,6 +2,7 @@ const db = require("../data/dbConfig");
 
 module.exports = {
     addUser,
+    getUser,
     addMother,
     addDriver,
     getVillages
@@ -12,7 +13,9 @@ function getVillages(){
 }
 
 
-
+function getUser(){
+    return db("users").select("*")
+}
 
 function addUser(user) {
     return db('users')
