@@ -20,6 +20,7 @@ const upload = multer(storage);
 router.get("/villages", (req,res) => {
     odk.getVillages()
         .then(villages => {
+            console.log(villages)
             res.status(200).json(villages);
         })
         .catch(err => {
