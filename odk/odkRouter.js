@@ -73,8 +73,8 @@ router.post('/upload', upload.single('xml_submission_file'), (req, res) => {
                     })
                     .catch(err => res.status(500).json({error: "There was an error while saving the user to the database"}))
             }*/
-            // fs.unlinkSync(path);
-            // res.status(201).json(user);
+            fs.unlinkSync(path);
+            res.status(201).json(user);
         });
     })
 });
