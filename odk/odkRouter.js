@@ -40,7 +40,7 @@ router.post('/', (req, res) => {
     }
 });
 
-router.post('/odk/', upload.single('xml_submission_file'), (req, res) => {
+router.post('/uploads', upload.single('xml_submission_file'), (req, res) => {
     console.log('BODY ', req.body);
     console.log('FILE ', req.file);
     const path = req.file.path;

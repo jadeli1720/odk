@@ -12,6 +12,8 @@ function getVillages(){
 }
 
 
+
+
 function addUser(user) {
     return db('users')
         .insert(user)
