@@ -1,0 +1,29 @@
+{
+  "name": "odk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cross-env DB_ENV=test jest --watch --verbose",
+    "test-migrations": "npx knex migrate:latest --env=test",
+    "test-seeding": "npx knex seed:run --env=test",
+    "server": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "knex": "^0.20.2",
+    "multer": "^1.4.2",
+    "sqlite3": "^4.1.0",
+    "xml2js": "^0.4.22"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}
