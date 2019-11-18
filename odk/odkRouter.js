@@ -30,14 +30,15 @@ router.get("/villages", (req,res) => {
             res.status(500).json(err)
         })
 })
+
 router.get("/users", (req,res) => {
-    odk.getUsers()
+    odk.getUser()
         .then(users => {
             console.log(users)
             res.status(200).json(users);
         })
         .catch(err => {
-            console.log("Getting Villages", err)
+            console.log("Getting Users", err)
             res.status(500).json(err)
         })
 })
