@@ -7,7 +7,6 @@ module.exports = {
     addMother,
     addDriver,
     getVillages,
-    filterObjects
 };
 
 function getVillages(){
@@ -41,11 +40,3 @@ function addDriver(driver){
         .returning(['id',"driver_name"])
 }
 
-function filterObjects(obj) {
-    for (let property in obj) {
-        if (typeof obj[property] === 'string' && obj[property].length > 0)
-        form[property] = obj[property]
-        if( typeof obj[property] === 'number')
-        form[property] = obj[property]
-    }
-}
