@@ -97,7 +97,6 @@ exports.up = function (knex) {
             .createTable("mothers", mothers => {
                 // primary key
                 mothers.increments();
-                mothers.string("survey_day");
                 //**identification
                 mothers.integer("interviewer");
                 mothers.string("interviewer_other");
@@ -133,7 +132,6 @@ exports.up = function (knex) {
                 mothers.string("carrier_other");
                 mothers.integer("want_education");
                 //complications
-                mothers.string("complications_note");
                 mothers.integer("anemia");
                 mothers.integer("malaria");
                 mothers.integer("obstructed_labor");
@@ -147,7 +145,6 @@ exports.up = function (knex) {
                 mothers.integer("other_complication");
                 mothers.string("complication_specify");
                 //Birth_Preparedness
-                mothers.string("BP_note");
                 mothers.integer("no_anc");
                 mothers.integer("deliver_place");
                 mothers.string("deliver_place_other");
@@ -173,7 +170,6 @@ exports.up = function (knex) {
                 mothers.integer("amt_saved");
                 mothers.integer("amt_saved_range");
                 //Pregnancy_History
-                mothers.string("PH_note");
                 mothers.integer("no_pg");
                 mothers.integer("no_birth");
                 mothers.integer("no_children");
@@ -201,8 +197,6 @@ exports.up = function (knex) {
                 mothers.integer("insurance_private");
                 mothers.integer("insurance_other");
                 mothers.integer("sell_asset");
-                //**Conclusions
-                mothers.string("notes");
             })
     )
 
