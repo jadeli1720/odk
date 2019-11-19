@@ -112,6 +112,10 @@ router.post('/upload', upload.single('xml_submission_file'), (req, res) => {
 
             filterObjects(interviewer)
             filterObjects(Registration)
+            filterObjects(Complications)
+            filterObjects(Birth_Preparedness)
+            filterObjects(Pregnancy_History)
+            filterObjects(Demographics)
 
             
             console.log("Intro object" , form)
