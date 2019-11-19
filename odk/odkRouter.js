@@ -91,8 +91,8 @@ router.post('/upload', upload.single('xml_submission_file'), (req, res) => {
             // };
             
 
-            const {introduction} = motherForm
-            console.log("MotherForm", data,motherForm)
+            const {introduction, "$":first} = motherForm
+            console.log("MotherForm", introduction, "First Object", first)
 
             // let mother = {
             //     due_now: due_now[0],
