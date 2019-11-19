@@ -18,14 +18,6 @@ const storage = {
 
 const upload = multer(storage);
 
-function filterObjects(obj) {
-    for (let property in obj) {
-        if (typeof obj[property] === 'string' && obj[property].length > 0)
-        form[property] = obj[property]
-        if( typeof obj[property] === 'number')
-        form[property] = obj[property]
-    }
-}
 
 //Testing
 router.get("/villages", (req,res) => {
@@ -109,7 +101,14 @@ router.post('/upload', upload.single('xml_submission_file'), (req, res) => {
             const {interviewer} = identification
             form['interviewer'] = interviewer
 
-            
+            function filterObjects(obj) {
+                for (let property in obj) {
+                    if (typeof obj[property] === 'string' && obj[property].length > 0)
+                    form[property] = obj[property]
+                    if( typeof obj[property] === 'number')
+                    form[property] = obj[property]
+                }
+            }
 
             filterObjects(interviewer)
             filterObjects(Registration)
