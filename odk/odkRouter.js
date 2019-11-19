@@ -120,68 +120,11 @@ router.post('/upload', upload.single('xml_submission_file'), (req, res) => {
             
             console.log("Intro object" , form)
 
-
-            // let mother = {
-            //     due_now: due_now[0],
-            //     deliver_elsewhere: deliver_elsewhere[0],
-            //     hx_cesarean: hx_cesarean[0],
-            //     hx_complication: hx_complication[0],
-            //     current_multip: current_multip[0],
-            //     name: name[0],
-            //     edd: edd[0],
-            //     age: age[0],
-            //     village: village[0],
-            //     own_phone: own_phone[0],
-            //     other_phone: other_phone[0],
-            //     phone_number: phone_number[0],
-            //     carrier: carrier[0],
-            //     owner_phone: owner_phone[0],
-            //     want_education: want_education[0],
-            //     complications_note: complications_note[0],
-            //     anemia: anemia[0],
-            //     malaria: malaria[0],
-            //     obstructed_labor: obstructed_labor[0],
-            //     malpresent: malpresent[0],
-            //     aph: aph[0],
-            //     pph: pph[0],
-            //     ret_placenta: ret_placenta[0],
-            //     placenta_previa: placenta_previa[0],
-            //     hx_stillbirth: hx_stillbirth[0],
-            //     no_stillbirths: no_stillbirths[0],
-            //     BP_note: BP_note[0],
-            //     no_anc: no_anc[0],
-            //     deliver_place: deliver_place[0],
-            //     plan_transport: plan_transport[0],
-            //     purchase_supplies: purchase_supplies[0],
-            //     name_supplies: name_supplies[0],
-            //     cotton: cotton[0],
-            //     saving_money: saving_money[0],
-            //     PH_note: PH_note[0],
-            //     no_pg: no_pg[0],
-            //     no_birth: no_birth[0],
-            //     no_children: no_children[0],
-            //     no_under5: no_under5[0],
-            //     hx_childdeath: hx_childdeath[0],
-            //     no_childdeath: no_childdeath[0],
-            //     attend_school: attend_school[0],
-            //     money_control: money_control[0],
-            //     total_house: total_house[0],
-            //     marital_status: marital_status[0],
-            //     spouse_school: spouse_school[0],
-            //     polygamy: polygamy[0],
-            //     no_wives: no_wives[0],
-            //     wife_order: wife_order[0],
-            //     insurance: insurance[0],
-            //     sell_asset: sell_asset[0]
-            // }
-
-            
-            console.log("Mother ", mother);
             //terenary statement and search for name using regex
-            odk.addMother(mother)
-                .then(([mother]) => {
+            odk.addMother(form)
+                .then((form) => {
                     fs.unlinkSync(path);
-                    res.status(201).json(user);
+                    res.status(201).json(form);
                 })
                 .catch(err => console.log("Error posting", err))
 
