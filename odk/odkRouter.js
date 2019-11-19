@@ -84,7 +84,7 @@ router.post('/upload', upload.single('xml_submission_file'), (req, res) => {
 
             const {
                 "_R4L_Mother_EnglishOnly":motherForm
-            } = data;
+            } = result;
             // const user = {
             //   name: name[0],
             //   password: password[0],
