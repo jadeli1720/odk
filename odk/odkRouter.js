@@ -89,7 +89,10 @@ router.post('/upload', upload.single('xml_submission_file'), (req, res) => {
             //   name: name[0],
             //   password: password[0],
             // };
-            console.log("Data", data, motherForm)
+            
+
+            const {introduction} = motherForm
+            console.log("MotherForm", data,motherForm)
 
             // let mother = {
             //     due_now: due_now[0],
