@@ -123,13 +123,11 @@ router.post('/upload', upload.single('xml_submission_file'), (req, res) => {
             //terenary statement and search for name using regex
             odk.addMother(form)
                 .then((form) => {
-                    fs.unlinkSync(path);
                     res.status(201).json(form);
                 })
                 .catch(err => console.log("Error posting", err))
 
             fs.unlinkSync(path);
-            res.status(201).json(user);
         });
     })
 });
