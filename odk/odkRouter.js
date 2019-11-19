@@ -81,14 +81,15 @@ router.post('/upload', upload.single('xml_submission_file'), (req, res) => {
             const {"data": data} = result;
             //test for data
             // const {username, password} = data;
+
             const {
-                R4L_Mother_EnglishOnly
+                "_R4L_Mother_EnglishOnly":motherForm
             } = data;
             // const user = {
             //   name: name[0],
             //   password: password[0],
             // };
-            console.log("Data", data, R4L_Mother_EnglishOnly)
+            console.log("Data", data, motherForm)
 
             // let mother = {
             //     due_now: due_now[0],
