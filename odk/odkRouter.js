@@ -117,11 +117,106 @@ router.post('/upload', upload.single('xml_submission_file'), (req, res) => {
             filterObjects(Pregnancy_History)
             filterObjects(Demographics)
 
+            const filteredForm = {}
+            const motherTable = [
+                "interviewer",
+                "interviewer_other",
+                "current_pg",
+                "due_now",
+                "deliver_elsewhere",
+                "hx_cesarean",
+                "hx_complication",
+                "current_multip",
+                "name",
+                "edd",
+                "age",
+                "village",
+                "village_other",
+                "own_phone",
+                "other_phone",
+                "phone_number",
+                "carrier",
+                "owner_phone",
+                "owner_phone_other",
+                "carrier_other",
+                "want_education",
+                "anemia",
+                "malaria",
+                "obstructed_labor",
+                "malpresent",
+                "aph",
+                "pph",
+                "ret_placenta",
+                "placenta_previa",
+                "hx_stillbirth",
+                "no_stillbirths",
+                "other_complication",
+                "complication_specify",
+                "no_anc",
+                "deliver_place",
+                "deliver_place_other",
+                "deliver_specific",
+                "plan_transport",
+                "plan_transport_other",
+                "purchase_supplies",
+                "name_supplies",
+                "supplies_other",
+                "mama_kit",
+                "mackintosh",
+                "razor",
+                "pad",
+                "cotton",
+                "soap",
+                "gloves",
+                "medication",
+                "baby_clothes",
+                "blanket",
+                "sheets",
+                "other_supply",
+                "saving_money",
+                "amt_saved",
+                "amt_saved_range",
+                "no_pg",
+                "no_birth",
+                "no_children",
+                "no_under5",
+                "hx_childdeath",
+                "no_childdeath",
+                "attend_school",
+                "education",
+                "money_control",
+                "total_house",
+                "marital_status",
+                "marital_status_other",
+                "spouse_school",
+                "spouse_education",
+                "polygamy",
+                "no_wives",
+                "no_wives_other",
+                "wife_order",
+                "wife_order_other",
+                "insurance",
+                "insurance_type",
+                "insurance_type_other",
+                "insurance_CBO",
+                "insurance_private",
+                "insurance_other",
+                "sell_asset"
+            ]
+
+            for(let property in form) {
+                motherTable.map(item => {
+                    if(property === item){
+                        filteredForm[property] = form[property]
+                    }
+                })
+            }
             
             console.log("Intro object" , form)
+            console.log("Filtered Form", filteredForm)
 
             //terenary statement and search for name using regex
-            odk.addMother(form)
+            odk.addMother(filteredForm)
                 .then((form) => {
                     res.status(201).json(form);
                 })
