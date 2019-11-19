@@ -91,21 +91,20 @@ router.post('/upload', upload.single('xml_submission_file'), (req, res) => {
             // };
             
 
-            const {introduction, "$":first} = motherForm
+            const {identification,introduction, "$":first, Registration, Complications, Birth_Preparedness, Pregnancy_History,  Demographics } = motherForm
             console.log("MotherForm", introduction, "First Object", first)
+           
+            const form = {}
+
+            //identification
+            const {interviewer} = identification
+            form['interviewer'] = interviewer
+
+            odk.filterObjects(interviewer)
+            odk.filterObjects(Registration)
+
             
-            const nameIntro = ["due_now","deliver_elsewhere","hx_cesarean","hx_complication","current_multip"]  
-
-            const intro = {}
-
-            for (let property in introduction) {
-                if (typeof introduction[property] === 'string' && introduction[property].length > 0)
-                intro[property] = introduction[property]
-                if( typeof introduction[property] === 'number')
-                intro[property] = introduction[property]
-            }
-
-            console.log("Intro object" , intro)
+            console.log("Intro object" , form)
 
 
             // let mother = {
